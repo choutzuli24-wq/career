@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>藝術人生 V5｜我的職涯下一站</title>
+<style>
+:root{color-scheme:light;--ink:#23221f;--paper:#f7f3e9;--white:#fffdf8;--line:#c8bfae;--accent:#582aac;--tint:#ebe0fa;--soft:#655b50}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif}
+body.band{--accent:#0b645a;--tint:#d8eee7}
+main{width:min(100%,650px);margin:auto;padding:14px 16px 32px}
+header{display:flex;justify-content:space-between;align-items:center;min-height:50px;border-bottom:1px solid var(--line);gap:10px;font-weight:800}
+header span:last-child{color:var(--accent);font-size:.86rem;text-align:right}
+section{margin-top:16px}
+.hero{background:var(--tint);border-radius:18px;padding:clamp(20px,5vw,34px);border:1px solid var(--line)}
+h1,h2,h3,p{margin:0}
+h1{font-size:clamp(2.25rem,9vw,4.1rem);line-height:1.13;letter-spacing:-.065em}
+h2{font-size:clamp(1.45rem,6vw,2.15rem);line-height:1.23}
+h3{font-size:1.18rem;line-height:1.28}
+p{margin-top:8px}
+.kicker{font-size:.82rem;color:var(--accent);font-weight:850;margin-bottom:9px}
+small,.muted{color:var(--soft)}
+.options,.cards{display:grid;gap:10px;margin-top:13px}
+button,summary{cursor:pointer;touch-action:manipulation}
+button{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-height:48px;color:var(--ink);background:var(--white);font:inherit;font-weight:750;text-align:left}
+button:hover{border-color:var(--accent);background:var(--tint)}
+button small{display:block;font-weight:500}
+.primary{color:#fff;background:var(--accent);border-color:var(--accent);text-align:center}
+.primary:hover{color:var(--accent);background:var(--tint)}
+.card{border:1px solid var(--line);border-radius:14px;background:var(--white);padding:14px}
+.card .tag{color:var(--accent);font-weight:800;font-size:.78rem;display:block;margin-bottom:3px}
+.card p{font-size:.93rem;margin-top:6px}
+.card details{margin-top:8px;border-top:1px solid var(--line);padding-top:3px}
+summary{min-height:44px;padding:8px 0;color:var(--accent);font-weight:750}
+a{color:var(--accent)}
+details a{overflow-wrap:anywhere}
+.buttons{display:grid;gap:8px;margin-top:16px}
+footer{border-top:1px solid var(--line);margin-top:22px;padding-top:6px;font-size:.84rem}
+footer ul{margin:0;padding-left:1.35em}
+footer li{margin:5px 0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+<header><span>藝術人生 V5</span><span id="stage">職涯探索</span></header>
+<div id="screen"></div>
+<footer>
+<details><summary>職稱與工作資料怎麼查？</summary>
+<p>卡片是職涯探索範例。實際工作內容、雇用型態和應徵條件依各單位公告。</p>
+<ul>
+<li><a href="https://www.ncafroc.org.tw/recruitment_detail.html?sid=10327" target="_blank" rel="noopener">國藝會藝文求才｜忠泰美術館展覽組企劃專員</a></li>
+<li><a href="https://job.taiwanjobs.gov.tw/internet/index/JobDetail.aspx?EMPLOYER_ID=2574993&amp;HIRE_ID=14677951&amp;R2=11" target="_blank" rel="noopener">台灣就業通｜行銷企劃專員</a></li>
+<li><a href="https://www.104.com.tw/jobs/search/?jobcat=2004000000&amp;keyword=%E5%AA%92%E9%AB%94%E5%85%AC%E9%97%9C" target="_blank" rel="noopener">104 人力銀行｜媒體公關專員</a></li>
+<li><a href="https://www.104.com.tw/jobs/search/?edu=1&amp;jobcat=2004003004&amp;order=2&amp;page=1&amp;ro=0" target="_blank" rel="noopener">104 人力銀行｜專案管理職缺與專案助理</a></li>
+<li><a href="https://guide.104.com.tw/wow/job/2013001015/" target="_blank" rel="noopener">104 工作世界｜UI 設計師</a></li>
+<li><a href="https://www.npac-nso.org/upload/gallery/gallery/6dcdc05d2b78719a51323ee64645a9796de41d41_1778667735F0QU659H.pdf" target="_blank" rel="noopener">國家交響樂團｜演奏員甄選簡章</a></li>
+<li><a href="https://www.ncafroc.org.tw/recruitment_detail.html?sid=10088" target="_blank" rel="noopener">國藝會藝文求才｜好聲樂集藝文專案行政</a></li>
+<li><a href="https://www.ncafroc.org.tw/recruitment_detail.html?sid=10625" target="_blank" rel="noopener">國藝會藝文求才｜狂美交響管樂團兼任技術協力人員</a></li>
+<li><a href="https://www.ncafroc.org.tw/recruitment_detail.html?sid=9877" target="_blank" rel="noopener">國藝會藝文求才｜狂美交響管樂團行銷企劃專員</a></li>
+</ul>
+</details>
+</footer>
+</main>
+<script>
+"use strict";
+const jobs = {
+  painter: {title:"畫家", area:"繪畫創作", task:"用油畫、水彩或其他媒材創作畫作，準備展出或接受委託。", bridge:"素描、色彩與媒材練習可發展成個人的繪畫語言。", learn:"系列作品編排、提案、報價與作品保存。", reality:"可透過原作銷售、委託或展覽合作取得收入，案量與成交時間可能變動。"},
+  artist: {title:"視覺藝術家", area:"創作", task:"用繪畫、影像、裝置或混合媒材發展作品，提案或參與展覽。", bridge:"作品集訓練可用於建立自己的創作脈絡。", learn:"作品論述、展覽提案與報價。", reality:"展覽、銷售、委託與補助各有時程，收入可能跨月波動。"},
+  visual: {title:"平面設計師", area:"品牌設計", task:"把品牌需求轉成海報、包裝或社群素材。", bridge:"構圖、色彩和圖像表達可用於建立品牌辨識。", learn:"字體排印、印刷規格與客戶溝通。", reality:"求職可準備具體作品集，呈現從需求到定稿的過程。"},
+  exhibit: {title:"展覽組企劃專員", area:"美術館・藝術管理", task:"協助展覽研究、借展、展場製作與進撤場。", bridge:"看作品和理解媒材，有助於與藝術家及展場團隊溝通。", learn:"借展行政、預算、時程與觀眾動線。", reality:"可從展覽實習或執行助理累積布展與跨單位協作經驗。"},
+  project: {title:"專案助理", area:"專案管理", task:"整理需求、追蹤進度，協調設計端與執行團隊。", bridge:"美術班可用草圖把需求說清楚。管樂班可把團練分工和時間協調經驗帶進專案。", learn:"時程表、會議紀錄、預算與進度回報。", reality:"展會公司、設計公司與企業都有不同類型的專案職務，產業知識依領域補足。"},
+  marketing: {title:"行銷企劃專員", area:"品牌・企業・展演", task:"規劃宣傳、找出目標客群，追蹤報名或售票成效。", bridge:"美術班可判斷圖文怎麼吸引受眾。管樂班能把曲目特色轉成觀眾聽得懂的訊息。", learn:"文案、受眾分析、廣告預算與成效判讀。", reality:"可練習用一份校園活動企劃呈現目標、宣傳做法與結果。"},
+  pr: {title:"媒體公關專員", area:"公關公司・企業", task:"寫新聞稿、聯絡媒體，規劃採訪與記者會。", bridge:"美術班的視覺判斷可用於選圖。管樂班的演出經驗可幫助安排採訪與彩排時間。", learn:"新聞寫作、媒體聯繫與訊息確認。", reality:"作品可包括新聞稿、媒體資料包或活動執行紀錄。"},
+  ui: {title:"UI／UX 設計師", area:"資訊科技・數位產品", task:"設計 App 或網站流程，做介面原型並請使用者試用。", bridge:"版面、色彩與視覺層級能幫助使用者找到按鈕和資訊。", learn:"使用者研究、互動原型、易用性測試與工程協作。", reality:"可用作品集展示一個操作問題如何被發現、測試和改善。"},
+  musician: {title:"音樂家", area:"音樂創作與演出", task:"以個人或小編制準備演出，也可能依專長接改編或錄音工作。", bridge:"合奏與讀譜經驗可用於選曲、改編與合作排練。", learn:"編曲或錄音、演出提案、報價與合作溝通。", reality:"這張卡以自由接案的音樂家為例。演出、改編與錄音多依合作案安排，工作量可能波動。"},
+  player: {title:"樂團演奏員", area:"專業演奏", task:"團練、準備指定曲目，參與音樂會與巡演。", bridge:"合奏訓練培養音準、節奏和配合指揮的能力。", learn:"甄選曲目、管弦樂片段與試演準備。", reality:"正式團員依樂團缺額甄選。臨時演出（pickup）常依場次或專案合作，案量可能波動。"},
+  tutor: {title:"樂器教師", area:"音樂教室・個別教學", task:"為學生安排曲目、設計練習方法，追蹤學習進度。", bridge:"練習和團練經驗可轉成學生聽得懂的示範。", learn:"教學設計、回饋方式與排課。", reality:"個別課收入受學生數量及排課影響。校內正式教師另有資格與甄選要求。"},
+  admin: {title:"藝文專案行政", area:"樂團・表演藝術行政", task:"協調排練、場地與演出資料，跟進節目時程。", bridge:"熟悉合奏和演出流程，有助於提前看出排練、場地和人員的衝突。", learn:"行政文書、合約、預算與演出流程表。", reality:"職缺可能按單位採全職或專案合作，工作有時會配合演出檔期。"},
+  tech: {title:"兼任技術協力人員", area:"展演技術・音響", task:"架設、測試與撤收舞臺設備，配合彩排與現場演出。", bridge:"演奏經驗有助於理解臺上需要聽到什麼，以及何時適合調整。", learn:"音響訊號、器材操作、現場安全與技術溝通。", reality:"此卡以國內樂團的兼任職缺為例，需累積實際操作與演出經驗。"}
+};
+const tracks = {
+  art:{
+    name:"美術班", core:"painter", cross:"ui",
+    all:["artist","painter","visual","exhibit","project","marketing","pr","ui"],
+    rounds:[
+      ["展覽主題定了，你想先做什麼？",[
+        ["畫一組作品，發展自己的畫風","painter"],
+        ["設計海報和展覽的主視覺","visual"],
+        ["選作品、安排展區和參觀動線","exhibit"]]],
+      ["離開展剩一週，你想接手哪件事？",[
+        ["排交件和布展進度，確認每人負責什麼","project"],
+        ["把繪畫、影像和物件做成一件作品","artist"],
+        ["做報名頁的草稿，請同學試用","ui"]]],
+      ["怎麼讓更多人知道這場展？",[
+        ["想哪些人會來，安排社群宣傳","marketing"],
+        ["寫展覽消息，邀校刊採訪","pr"],
+        ["設計一組讓人一眼認出活動的圖文","visual"]]],
+      ["展覽結束，你最想把哪件事做下去？",[
+        ["繼續試不同媒材，發展下一件作品","artist"],
+        ["繼續畫下一組畫，整理成系列作品","painter"],
+        ["觀察觀眾怎麼看展，規劃下一次的展區","exhibit"],
+        ["找出報名卡住的地方，改好再測一次","ui"]]]
+    ]
+  },
+  band:{
+    name:"管樂班", core:"musician", cross:"project",
+    all:["musician","player","tutor","admin","tech","project","marketing","pr"],
+    rounds:[
+      ["校慶音樂會要開始籌備，你想接哪件事？",[
+        ["排練指定聲部，練到能跟全團配合","player"],
+        ["組一個小編制，挑曲目並改編一段","musician"],
+        ["確認場地和排練時段，整理演出流程","admin"]]],
+      ["彩排遇到狀況，你想先幫哪一忙？",[
+        ["試麥克風，找出哪個聲部聽不清楚","tech"],
+        ["教學弟妹拆解一段吹不順的節奏","tutor"],
+        ["更新分工表，追蹤器材和人力到位了沒","project"]]],
+      ["要邀請更多同學來聽，你想負責什麼？",[
+        ["用短片介紹曲目，追蹤報名人數","marketing"],
+        ["準備演出資訊，聯絡校刊來採訪","pr"],
+        ["安排彩排、入場與換場的順序","admin"]]],
+      ["音樂會結束，你最想把哪件事做下去？",[
+        ["練好指定曲目，準備參加演奏甄選","player"],
+        ["自己組團排曲目，尋找下一次演出","musician"],
+        ["為初學者設計一堂好上手的樂器課","tutor"],
+        ["整理預算與進度，籌備另一場活動","project"]]]
+    ]
+  }
+};
+const $ = id => document.getElementById(id);
+const button = (label, extra="", note="") => `<button type="button" ${extra}>${label}${note?`<small>${note}</small>`:""}</button>`;
+function draw(html,stage){
+  $("stage").textContent=stage;
+  $("screen").innerHTML=html;
+  window.scrollTo(0,0);
+  $("screen").querySelector("h1,h2")?.focus({preventScroll:true});
+}
+function start(){
+  document.body.className="";
+  draw(`<section class="hero"><div class="kicker">高中職涯探索</div><h1 tabindex="-1">我的職涯<br>下一站</h1>
+    <p>選一個班別，完成四輪校慶任務，再翻開你的職涯卡。</p></section>
+    <section><h2>你想從哪一班出發？</h2><div class="options">
+    ${button("美術班",'data-track="art"',"從作品展開始")}
+    ${button("管樂班",'data-track="band"',"從校慶音樂會開始")}
+    </div></section>`,"選班別");
+  for(const btn of document.querySelectorAll("[data-track]")) btn.onclick=()=>scenario(btn.dataset.track);
+}
+function scenario(key, answers=[]){
+  const track=tracks[key];
+  const step=answers.length;
+  const [question,options]=track.rounds[step];
+  document.body.className=key;
+  draw(`<section class="hero"><div class="kicker">${track.name}的校慶任務</div>
+  <h2 tabindex="-1">${question}</h2><p class="muted">選一件你最想做的事。</p></section><section class="options">
+  ${options.map(([label],i)=>button(label,`data-choice="${i}"`)).join("")}
+  </section><div class="buttons">${button(step?"回上一題":"換班別",'id="back"')}</div>`,
+  `第 ${step+1}／${track.rounds.length} 題`);
+  for(const btn of document.querySelectorAll("[data-choice]")) btn.onclick=()=>{
+    const next=[...answers,options[Number(btn.dataset.choice)]];
+    if(next.length===track.rounds.length) result(key,next);
+    else scenario(key,next);
+  };
+  $("back").onclick=step?()=>scenario(key,answers.slice(0,-1)):start;
+}
+function resultJobs(track,answers){
+  const counts=new Map();
+  for(const [,id] of answers) counts.set(id,(counts.get(id)||0)+1);
+  // Equal counts keep the order in which students first chose the work.
+  const ranked=[...counts.keys()].sort((a,b)=>counts.get(b)-counts.get(a));
+  return [...new Set([...ranked.slice(0,2),track.core,track.cross])];
+}
+function jobCard(id,label="",reasons=[]){
+  const j=jobs[id];
+  return `<article class="card"><span class="tag">${label?`${label} · `:""}${j.area}</span>
+    <h3>${j.title}</h3><p>${j.task}</p>
+    ${reasons.length?`<p><b>你選過</b>　${reasons.join("、")}</p>`:""}<details><summary>我能帶進什麼？還要學什麼？</summary>
+    <p><b>已有經驗可用</b>　${j.bridge}</p><p><b>要補的能力</b>　${j.learn}</p><p><b>求職現場</b>　${j.reality}</p>
+    </details></article>`;
+}
+function result(key,answers){
+  const track=tracks[key];
+  const chosen=resultJobs(track,answers);
+  const other=track.all.filter(id=>!chosen.includes(id));
+  const makeCard=id=>{
+    const reasons=answers.filter(([,job])=>job===id).map(([task])=>task);
+    const label=reasons.length?"對應你的選擇":id===track.core?"專業創作路線":"跨領域職涯";
+    return jobCard(id,label,reasons);
+  };
+  draw(`<section class="hero"><div class="kicker">${track.name} · 你的職涯卡</div><h2 tabindex="-1">你選的工作，可以走去哪裡？</h2>
+  <p>卡片會列出你選過的任務。翻開看看工作需要哪些能力。</p></section>
+  <section class="cards" aria-label="職涯卡">${chosen.map(makeCard).join("")}</section>
+  <section><details><summary>看${track.name}的其他 ${other.length} 個職稱</summary><div class="cards">${other.map(makeCard).join("")}</div></details></section>
+  <div class="buttons">${button("回上一題修改",'id="edit"')}${button("同一班再玩一次",'id="retry" class="primary"')}${button("換班別",'id="change"')}</div>`,"看職涯卡");
+  $("edit").onclick=()=>scenario(key,answers.slice(0,-1));
+  $("retry").onclick=()=>scenario(key);
+  $("change").onclick=start;
+}
+start();
+</script>
+</body>
+</html>
